@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YXTOO | PORTFOLIO MINIAMAKER</title>
+    <title>YXTOO | PORTFOLIO</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,23 +12,18 @@
             --neon-yellow: #ffee00;
             --bg-dark: #0a0a0c;
             --card-bg: #15151a;
-            --pixel-font: 'VT323', monospace;
-            --cyber-font: 'Rajdhani', sans-serif;
         }
 
         body {
             background-color: var(--bg-dark);
             color: white;
-            font-family: var(--cyber-font);
+            font-family: 'Rajdhani', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        /* Effet de lignes de scan (Scanline effect) */
+        /* Scanline effect */
         body::before {
             content: " ";
             display: block;
@@ -41,86 +36,63 @@
             pointer-events: none;
         }
 
-        /* En-tête */
         header {
             text-align: center;
-            padding: 80px 20px 50px;
-            width: 100%;
+            padding: 80px 20px;
             border-bottom: 2px solid var(--neon-blue);
-            box-shadow: 0 0 15px var(--neon-blue);
-            position: relative;
+            box-shadow: 0 0 20px var(--neon-blue);
+            background: linear-gradient(to bottom, #111, var(--bg-dark));
         }
 
         h1 {
-            font-family: var(--pixel-font);
-            font-size: 5rem;
+            font-family: 'VT323', monospace;
+            font-size: clamp(3.5rem, 12vw, 6rem);
             margin: 0;
+            color: var(--neon-blue);
+            text-shadow: 4px 4px var(--neon-pink);
             text-transform: uppercase;
             letter-spacing: 5px;
-            color: var(--neon-blue);
-            text-shadow: 3px 3px var(--neon-pink);
-            animation: glitch 1s linear infinite;
-        }
-
-        @keyframes glitch {
-            2%, 64% { transform: translate(2px, 0) skew(0deg); }
-            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
-            62% { transform: translate(0, 0) skew(5deg); }
         }
 
         .price-tag {
             background: var(--neon-pink);
-            color: white;
-            padding: 10px 20px;
+            padding: 8px 25px;
             font-size: 2rem;
             display: inline-block;
             margin-top: 15px;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-            animation: pulse-pink 2s infinite;
+            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+            font-family: 'VT323', monospace;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse-pink {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 0, 85, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-pink); }
+            100% { transform: scale(1); }
         }
 
-        /* Photo de profil All Might en bulle */
         .profile-bubble {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             border: 4px solid var(--neon-yellow);
             box-shadow: 0 0 20px var(--neon-yellow);
             overflow: hidden;
             z-index: 200;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        .profile-bubble img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-bubble:hover { transform: scale(1.2) rotate(-10deg); }
 
-        .profile-bubble img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-bubble:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 0 30px var(--neon-yellow), 0 0 50px rgba(255, 238, 0, 0.5);
-        }
-
-        /* Container principal */
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px 100px;
-            width: 100%;
+            margin: 60px auto;
+            padding: 0 20px;
         }
 
-        /* Grille des miniatures */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -131,140 +103,119 @@
             background: var(--card-bg);
             border: 1px solid #333;
             padding: 15px;
+            transition: 0.4s ease;
             position: relative;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
         }
 
         .card img {
             width: 100%;
-            display: block;
             border: 1px solid #222;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.03);
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
-        }
-
-        .card:hover img {
-            transform: scale(1.05);
+            display: block;
         }
 
         .card-title {
+            text-align: center;
             margin-top: 15px;
-            font-family: var(--pixel-font);
-            font-size: 1.4rem;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
             color: var(--neon-pink);
             text-transform: uppercase;
-            text-align: center;
-            opacity: 0.8;
-            transition: opacity 0.3s ease, color 0.3s ease;
         }
 
-        .card:hover .card-title {
-            opacity: 1;
-            color: var(--neon-blue);
-            text-shadow: 0 0 5px var(--neon-blue);
-        }
-
-        /* Section Contact */
         footer {
             text-align: center;
-            padding: 80px 20px;
-            width: 100%;
-            background: var(--card-bg);
-            border-top: 2px solid var(--neon-pink);
-            font-family: var(--pixel-font);
-            box-shadow: 0 -10px 20px rgba(255, 0, 85, 0.2);
-        }
-
-        footer p {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: white;
-            text-transform: uppercase;
+            padding: 100px 20px;
         }
 
         .btn-contact {
-            display: inline-block;
             padding: 20px 50px;
-            background: transparent;
-            color: var(--neon-pink);
             border: 3px solid var(--neon-pink);
+            color: var(--neon-pink);
             text-decoration: none;
-            font-size: 2rem;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            font-size: 2.5rem;
+            font-family: 'VT323', monospace;
+            transition: 0.3s;
+            background: transparent;
         }
 
         .btn-contact:hover {
             background: var(--neon-pink);
-            color: black;
+            color: white;
             box-shadow: 0 0 40px var(--neon-pink);
-            transform: scale(1.05);
+            cursor: pointer;
         }
 
-        .btn-contact::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: 0.5s;
+        #music-status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            color: var(--neon-blue);
+            opacity: 0.7;
         }
-
-        .btn-contact:hover::before {
-            left: 100%;
-        }
-
     </style>
 </head>
-<body>
+<body onclick="playMusic()">
 
-<div class="profile-bubble" title="All Might est là !">
-    <img src="image_8.png" alt="All Might Profile">
+<iframe id="lofi-player" width="0" height="0" src="https://www.youtube.com/embed/jfKfPfyJRdk?enablejsapi=1&autoplay=1&loop=1&playlist=jfKfPfyJRdk" frameborder="0" allow="autoplay"></iframe>
+
+<div class="profile-bubble">
+    <img src="pfp.avif" alt="All Might">
 </div>
 
 <header>
     <h1>YXTOO</h1>
-    <p style="font-size: 1.5rem; margin-top: 5px; color: var(--neon-blue);">MINIAMAKER YOUTUBE PAS CHER</p>
-    <div class="price-tag">STARTER @ ~10€</div>
+    <div class="price-tag">STARTER @ 10€</div>
+    <p style="margin-top: 20px; color: var(--neon-blue); font-family: 'VT323';">CLIQUEZ N'IMPORTE OÙ POUR LA MUSIQUE 🎵</p>
 </header>
 
 <div class="container">
     <div class="grid">
         <div class="card">
-            <img src="image_0.png" alt="Miniature Problématique">
-            <div class="card-title">Concept & Facecam Impact</div>
+            <img src="1.jpg" alt="Portfolio 1">
+            <div class="card-title">CONCEPT & IRL</div>
         </div>
 
         <div class="card">
-            <img src="image_1.png" alt="Miniature Banger">
-            <div class="card-title">Roblox Gaming High-Impact</div>
+            <img src="Capture d'écran 2026-02-26 204325.png" alt="Portfolio 2">
+            <div class="card-title">ROBLOX BANGER</div>
         </div>
 
         <div class="card">
-            <img src="image_2.png" alt="Miniature Blox Fruits">
-            <div class="card-title">Blox Fruits / Style Argent</div>
+            <img src="FRUITFORMONEY MINIA.png" alt="Portfolio 3">
+            <div class="card-title">BLOX FRUITS / CASH</div>
         </div>
 
         <div class="card">
-            <img src="image_3.png" alt="Miniature Illegal">
-            <div class="card-title">Storytelling & Gameplay</div>
+            <img src="MINIA.jpg" alt="Portfolio 4">
+            <div class="card-title">STORYTELLING</div>
         </div>
     </div>
 </div>
 
 <footer>
-    <p>PRÊT À FAIRE DÉCOLLER TES VUES ?</p>
-    <a href="mailto:yxtoo.2093@gmail.com" class="btn-contact">CONTACTE-MOI ICI</a>
+    <a href="mailto:yxtoo.2093@gmail.com" class="btn-contact">ME CONTACTER</a>
 </footer>
+
+<div id="music-status">SYSTEM: AUDIO_READY</div>
+
+<script>
+    function playMusic() {
+        const player = document.getElementById('lofi-player');
+        // On force le reload du player au clic pour bypass l'interdiction d'autoplay
+        player.src += "&autoplay=1";
+        document.getElementById('music-status').innerText = "SYSTEM: MUSIC_PLAYING";
+        // On retire l'event listener pour ne pas relancer la musique à chaque clic
+        document.body.onclick = null;
+    }
+</script>
 
 </body>
 </html>
