@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YXTOO | PORTFOLIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-blue: #00f2ff;
+            --bg-dark: #0a0a0c;
+            --card-bg: #15151a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Effet de scanline (lignes TV) */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 100;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            border-bottom: 2px solid var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        h1 {
+            font-family: 'VT323', monospace;
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--neon-blue);
+            text-shadow: 3px 3px var(--neon-pink);
+        }
+
+        .price-tag {
+            background: var(--neon-pink);
+            color: white;
+            padding: 5px 15px;
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-top: 10px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            padding: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            display: block;
+            border: 1px solid #222;
+        }
+
+        .card-title {
+            margin-top: 10px;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-family: 'VT323', monospace;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-contact:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>YXTOO MINIAMAKER</h1>
+    <div class="price-tag">STARTER @ 10€</div>
+</header>
+
+<div class="container">
+    <div class="grid">
+        <div class="card">
+            <img src="REMPLACE_PAR_TON_LIEN_IMAGE_1" alt="Style Problématique / Facecam">
+            <div class="card-title">Concept & Facecam</div>
+        </div>
+
+        <div class="card">
+            <img src="REMPLACE_PAR_TON_LIEN_IMAGE_2" alt="Style Banger Roblox">
+            <div class="card-title">Roblox Gaming High-Impact</div>
+        </div>
+
+        <div class="card">
+            <img src="REMPLACE_PAR_TON_LIEN_IMAGE_3" alt="Blox Fruits Style">
+            <div class="card-title">Blox Fruits / Cash Style</div>
+        </div>
+
+        <div class="card">
+            <img src="REMPLACE_PAR_TON_LIEN_IMAGE_4" alt="Storytelling Roblox">
+            <div class="card-title">Storytelling & Gameplay</div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>PRÊT À COMMANDER TON BANGER ?</p>
+    <a href="TON_LIEN_DISCORD_OU_TWITTER" class="btn-contact">CONTACTE-MOI ICI</a>
+</footer>
+
+</body>
+</html>
