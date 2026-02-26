@@ -3,129 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YXTOO | PORTFOLIO</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <title>YXTOO_ | CYBER PORTFOLIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-pink: #ff0055;
             --neon-blue: #00f2ff;
-            --neon-yellow: #ffee00;
-            --bg-dark: #0a0a0c;
-            --card-bg: #15151a;
+            --bg-dark: #050508;
+            --card-bg: rgba(20, 20, 25, 0.8);
         }
 
         body {
             background-color: var(--bg-dark);
             color: white;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #050508 100%);
         }
 
-        /* Scanline effect */
+        /* Scanlines */
         body::before {
-            content: " ";
-            display: block;
+            content: "";
             position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 100;
-            background-size: 100% 4px, 3px 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 1000;
+            background-size: 100% 3px, 3px 100%;
             pointer-events: none;
+        }
+
+        /* Voitures Volantes */
+        .car {
+            position: fixed;
+            width: 40px;
+            height: 15px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            border-radius: 5px 15px 5px 5px;
+            z-index: 50;
+            opacity: 0.6;
+            pointer-events: none;
+            filter: blur(1px);
+        }
+
+        @keyframes flyRight {
+            from { left: -100px; }
+            to { left: 110vw; }
         }
 
         header {
             text-align: center;
-            padding: 80px 20px;
-            border-bottom: 2px solid var(--neon-blue);
-            box-shadow: 0 0 20px var(--neon-blue);
-            background: linear-gradient(to bottom, #111, var(--bg-dark));
+            padding: 100px 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
         }
 
         h1 {
-            font-family: 'VT323', monospace;
-            font-size: clamp(3.5rem, 12vw, 6rem);
+            font-size: 5rem;
             margin: 0;
-            color: var(--neon-blue);
-            text-shadow: 4px 4px var(--neon-pink);
-            text-transform: uppercase;
-            letter-spacing: 5px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            letter-spacing: 10px;
+        }
+
+        .discord-tag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #5865F2; /* Couleur Discord */
+            font-family: 'VT323', monospace;
+        }
+
+        .discord-tag img {
+            width: 40px;
+            height: 40px;
         }
 
         .price-tag {
             background: var(--neon-pink);
-            padding: 8px 25px;
-            font-size: 2rem;
+            padding: 10px 30px;
+            font-size: 1.5rem;
             display: inline-block;
-            margin-top: 15px;
-            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-            font-family: 'VT323', monospace;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-pink); }
-            100% { transform: scale(1); }
+            margin-top: 30px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            box-shadow: 0 0 20px var(--neon-pink);
         }
 
         .profile-bubble {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            border: 4px solid var(--neon-yellow);
-            box-shadow: 0 0 20px var(--neon-yellow);
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
             overflow: hidden;
-            z-index: 200;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 500;
+            transition: 0.3s;
         }
         .profile-bubble img { width: 100%; height: 100%; object-fit: cover; }
-        .profile-bubble:hover { transform: scale(1.2) rotate(-10deg); }
 
         .container {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 80px auto;
             padding: 0 20px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .card {
             background: var(--card-bg);
-            border: 1px solid #333;
-            padding: 15px;
-            transition: 0.4s ease;
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            padding: 10px;
             position: relative;
+            transition: 0.5s;
+            backdrop-filter: blur(5px);
         }
 
         .card:hover {
-            transform: translateY(-12px) scale(1.02);
+            transform: scale(1.05) rotate(1deg);
             border-color: var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
         }
 
         .card img {
             width: 100%;
-            border: 1px solid #222;
-            display: block;
+            filter: grayscale(20%);
+            transition: 0.5s;
+        }
+
+        .card:hover img {
+            filter: grayscale(0%);
         }
 
         .card-title {
             text-align: center;
-            margin-top: 15px;
+            padding: 15px;
             font-family: 'VT323', monospace;
             font-size: 1.5rem;
-            color: var(--neon-pink);
-            text-transform: uppercase;
+            color: var(--neon-blue);
         }
 
         footer {
@@ -134,88 +160,107 @@
         }
 
         .btn-contact {
-            padding: 20px 50px;
-            border: 3px solid var(--neon-pink);
-            color: var(--neon-pink);
-            text-decoration: none;
-            font-size: 2.5rem;
-            font-family: 'VT323', monospace;
-            transition: 0.3s;
+            padding: 20px 60px;
             background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-size: 2rem;
+            font-family: 'VT323', monospace;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: inset 0 0 10px var(--neon-blue);
         }
 
         .btn-contact:hover {
-            background: var(--neon-pink);
-            color: white;
-            box-shadow: 0 0 40px var(--neon-pink);
-            cursor: pointer;
-        }
-
-        #music-status {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            font-family: 'VT323', monospace;
-            font-size: 1rem;
-            color: var(--neon-blue);
-            opacity: 0.7;
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 50px var(--neon-blue);
         }
     </style>
 </head>
-<body onclick="playMusic()">
+<body onclick="startExperience()">
 
-<iframe id="lofi-player" width="0" height="0" src="https://www.youtube.com/embed/jfKfPfyJRdk?enablejsapi=1&autoplay=1&loop=1&playlist=jfKfPfyJRdk" frameborder="0" allow="autoplay"></iframe>
+    <div id="player"></div>
 
-<div class="profile-bubble">
-    <img src="pfp.avif" alt="All Might">
-</div>
+    <div class="profile-bubble">
+        <img src="pfp.avif" alt="PFP">
+    </div>
 
-<header>
-    <h1>YXTOO</h1>
-    <div class="price-tag">STARTER @ 10€</div>
-    <p style="margin-top: 20px; color: var(--neon-blue); font-family: 'VT323';">CLIQUEZ N'IMPORTE OÙ POUR LA MUSIQUE 🎵</p>
-</header>
-
-<div class="container">
-    <div class="grid">
-        <div class="card">
-            <img src="1.jpg" alt="Portfolio 1">
-            <div class="card-title">CONCEPT & IRL</div>
+    <header>
+        <h1>YXTOO_</h1>
+        <div class="discord-tag">
+            <img src="discord_logo.png" alt="Discord">
+            <span>Yxtoo_</span>
         </div>
+        <div class="price-tag">MINIA STARTER @ 10€</div>
+        <p style="margin-top:20px; font-family:'VT323'; color:var(--neon-pink);">[ CLICK ANYWHERE TO SYNC AUDIO ]</p>
+    </header>
 
-        <div class="card">
-            <img src="Capture d'écran 2026-02-26 204325.png" alt="Portfolio 2">
-            <div class="card-title">ROBLOX BANGER</div>
-        </div>
-
-        <div class="card">
-            <img src="FRUITFORMONEY MINIA.png" alt="Portfolio 3">
-            <div class="card-title">BLOX FRUITS / CASH</div>
-        </div>
-
-        <div class="card">
-            <img src="MINIA.jpg" alt="Portfolio 4">
-            <div class="card-title">STORYTELLING</div>
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <img src="1.jpg" alt="1">
+                <div class="card-title">> CONCEPT_IRL</div>
+            </div>
+            <div class="card">
+                <img src="Capture d'écran 2026-02-26 204325.png" alt="2">
+                <div class="card-title">> BANGER_ROBLOX</div>
+            </div>
+            <div class="card">
+                <img src="FRUITFORMONEY MINIA.png" alt="3">
+                <div class="card-title">> BLOX_FRUITS_CASH</div>
+            </div>
+            <div class="card">
+                <img src="MINIA.jpg" alt="4">
+                <div class="card-title">> STORYTELLING_MODE</div>
+            </div>
         </div>
     </div>
-</div>
 
-<footer>
-    <a href="mailto:yxtoo.2093@gmail.com" class="btn-contact">ME CONTACTER</a>
-</footer>
+    <footer>
+        <a href="mailto:yxtoo.2093@gmail.com" class="btn-contact">INITIATE_CONTACT</a>
+    </footer>
 
-<div id="music-status">SYSTEM: AUDIO_READY</div>
+    <script>
+        // API YouTube pour contrôler le volume
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-<script>
-    function playMusic() {
-        const player = document.getElementById('lofi-player');
-        // On force le reload du player au clic pour bypass l'interdiction d'autoplay
-        player.src += "&autoplay=1";
-        document.getElementById('music-status').innerText = "SYSTEM: MUSIC_PLAYING";
-        // On retire l'event listener pour ne pas relancer la musique à chaque clic
-        document.body.onclick = null;
-    }
-</script>
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: '5wRWniH7rt8', // Cyberpunk Lofi Mix
+                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': '5wRWniH7rt8' },
+                events: {
+                    'onReady': function(event) {
+                        event.target.setVolume(20); // VOLUME FAIBLE (20%)
+                    }
+                }
+            });
+        }
 
+        function startExperience() {
+            if(player && player.playVideo) {
+                player.playVideo();
+            }
+            document.body.onclick = null;
+        }
+
+        // Système de voitures volantes
+        function createCar() {
+            const car = document.createElement('div');
+            car.className = 'car';
+            car.style.top = Math.random() * 80 + 'vh';
+            car.style.animation = `flyRight ${Math.random() * 10 + 10}s linear forwards`;
+            document.body.appendChild(car);
+            setTimeout(() => car.remove(), 20000);
+        }
+
+        setInterval(createCar, 4000); // Une voiture toutes les 4 secondes
+    </script>
 </body>
 </html>
